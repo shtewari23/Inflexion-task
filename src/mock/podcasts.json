@@ -1,0 +1,26 @@
+[
+  {
+    "id": "1",
+    "title": "OpenAI on Compute Infrastructure Growth",
+    "speaker": "Sam Altman",
+    "company": "OpenAI",
+    "date": "19 FEB, 2025",
+    "summary": "Sam Altman discusses the future of AI infrastructure scaling..."
+  },
+  {
+    "id": "2",
+    "title": "Microsoft’s AI Commitment",
+    "speaker": "Satya Nadella",
+    "company": "Microsoft",
+    "date": "15 FEB, 2025",
+    "summary": "Satya Nadella shares Microsoft’s long-term AI strategy..."
+  },
+  {
+    "id": "3",
+    "title": "Nvidia and the Future of GPUs",
+    "speaker": "Jensen Huang",
+    "company": "Nvidia",
+    "date": "10 FEB, 2025",
+    "summary": "Jensen Huang dives into the role of GPUs in accelerating AI..."
+  }
+]
