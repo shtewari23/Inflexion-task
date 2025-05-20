@@ -17,6 +17,7 @@
     height: "96px",
     backgroundColor: "transparent",
     boxShadow: "none",
+
   }));
 
   const StyledToolbar = styled(Toolbar)(({ theme }) => ({
@@ -27,7 +28,16 @@
     padding: theme.spacing(0, 3),
     flexWrap: "wrap",
     gap: theme.spacing(1),
-    
+
+      [theme.breakpoints.down("sm")]: {
+    position: "relative",         // or "absolute" based on use-case
+    bottom: 18,                 // applies only on mobile
+  },
+
+  // Optional: styles for larger screens
+  [theme.breakpoints.up("sm")]: {
+    bottom: 8.5,
+  },
   }));
 
   const LogoBox = styled(Box)(({ theme }) => ({

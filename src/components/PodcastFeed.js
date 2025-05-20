@@ -1,4 +1,7 @@
   import React, { useState, useEffect, useMemo } from "react";
+  import { Link } from "react-router-dom";
+import { Skeleton } from "@mui/material";
+
   import {
     Box,
     Card,
@@ -71,7 +74,8 @@
     sx={{
       fontFamily: "Helvetica Now Display",
       fontWeight: 700,
-      fontSize: "20px",
+      fontSize: {xs:'18px' ,sm:'20px'},
+      
       lineHeight: "24px",
       letterSpacing: "0%",
       verticalAlign: "middle",
@@ -85,7 +89,7 @@
     sx={{
       fontFamily: "Helvetica Now Display",
       fontWeight: 500,
-      fontSize: "16px",
+      fontSize: {xs:'12px' ,sm:'16px'},
       lineHeight: "21.8px",
       letterSpacing: "0%",
       verticalAlign: "middle",
@@ -95,7 +99,17 @@
       flexWrap: "wrap", // allows wrapping on smaller screens if needed
     }}
   >
-    {talk.executive_name} &nbsp;•&nbsp; {talk.company_name} &nbsp;•&nbsp;
+
+      <Link
+                to={`/content/${talk.id}`}
+                style={{
+                  color: "#667085",
+                  textDecoration: "none",
+                  cursor: "pointer",
+                  fontWeight: 500,
+                  marginRight: 4,
+                }}>
+    {talk.executive_name} </Link>&nbsp;•&nbsp; {talk.company_name} &nbsp;•&nbsp;
 
     <span style={{ display: "inline-flex", alignItems: "center" }}>
       <img
@@ -120,6 +134,8 @@
       fontFamily: "Helvetica Now Display",
       fontWeight: 500,
       fontSize: "18px",
+            fontSize: {xs:'16px' ,sm:'18px'},
+
       lineHeight: "28px",
       letterSpacing: "0.2px",
       color: "#667085",
@@ -256,6 +272,9 @@
           )}
 
           {/* Full Summary CTA */}
+          
+              <Link to={`/summary/${talk.id}`} style={{ textDecoration: "none" , color:'#0A0A0A'}}>
+
           <Box
             mt={4}
             display="flex"
@@ -280,6 +299,7 @@
       fontFamily: "Helvetica Now Display"
     }}
   >
+
     <Box
       component="img"
       src={clipboardIcon}
@@ -291,6 +311,7 @@
 
 
           </Box>
+          </Link>
         </CardContent>
       </Card>
     );
@@ -335,7 +356,72 @@
       fetchTalks();
     }, [selectedTabs]);
 
-    if (loading) return <Typography mt={4}>Loading...</Typography>;
+if (loading) {
+  return (
+    <Box
+      display="flex"
+      flexWrap="wrap"
+      justifyContent="center"
+      gap={3}
+      mt={4}
+    >
+      {[...Array(3)].map((_, i) => (
+        <Card
+          key={i}
+          variant="outlined"
+          sx={{
+            maxWidth: 700,
+            width: {
+              xs: 300,
+              sm: "100%",
+            },
+            maxHeight: 345,
+            borderRadius: "28px",
+            p: 3,
+            boxShadow: "0 0 8px rgba(0,0,0,0.05)",
+            borderColor: "#E5E7EB",
+          }}
+        >
+          <CardContent sx={{ p: 0 }}>
+            {/* Header Skeleton */}
+            <Box
+              display="flex"
+              flexDirection={{ xs: "column", sm: "row" }}
+              gap={2}
+              mb={2}
+            >
+              <Skeleton variant="circular" width={48} height={48} />
+              <Box flex={1}>
+                <Skeleton height={28} width="80%" />
+                <Skeleton height={20} width="60%" />
+              </Box>
+            </Box>
+
+            {/* Description Skeleton */}
+            <Skeleton height={20} width="100%" />
+            <Skeleton height={20} width="95%" sx={{ mt: 1 }} />
+            <Skeleton height={20} width="90%" sx={{ mt: 1 }} />
+
+            {/* Bullet points Skeleton */}
+            <Box mt={2}>
+              <Skeleton height={20} width="80%" />
+              <Skeleton height={20} width="75%" sx={{ mt: 1 }} />
+              <Skeleton height={20} width="70%" sx={{ mt: 1 }} />
+            </Box>
+
+            {/* CTA Skeleton */}
+            <Skeleton
+              variant="rectangular"
+              width={160}
+              height={36}
+              sx={{ mt: 4, borderRadius: "999px" }}
+            />
+          </CardContent>
+        </Card>
+      ))}
+    </Box>
+  );
+}
 
     return (
       <Box display="flex" flexDirection="column" gap={4} alignItems="center" py={4}>

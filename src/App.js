@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
-import { Provider, useDispatch } from 'react-redux';
+import { Provider } from 'react-redux';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 import Header from './components/Header';
 import SearchTags from './components/SearchFilters';
 import Feed from './components/PodcastFeed';
+import ContentDetail from './components/ContentDetail'; // new page you created
 import { store } from './redux/store';
 import { Container, Box, Typography } from '@mui/material';
 import Footer from './components/Footer';
-
+import SummaryPage from './components/SummaryPage';
 function MainApp() {
-  const dispatch = useDispatch();
   const [input, setInput] = useState("");
-
 
   return (
     <Box sx={{ width: '100%' }}>
@@ -36,20 +37,20 @@ function MainApp() {
             py: 6,
           }}
         >
-        <Typography
-  sx={{
-    fontFamily: 'Helvetica Now Display, sans-serif',
-    fontWeight: 950,
-    fontSize: { xs: '32px', sm: '56px' },          // 32px on mobile (xs), 56px on medium and up (md)
-    lineHeight: { xs: '44px', sm: '64px' },        // 44px on mobile, 64px on desktop
-    letterSpacing: '0.1px',
-    textTransform: 'uppercase',
-    textAlign: 'center',
-    verticalAlign: 'middle',
-  }}
->
-  Every word spoken. <br /> By top AI execs
-</Typography>
+          <Typography
+            sx={{
+              fontFamily: 'Helvetica Now Display, sans-serif',
+              fontWeight: 950,
+              fontSize: { xs: '32px', sm: '56px' },
+              lineHeight: { xs: '44px', sm: '64px' },
+              letterSpacing: '0.1px',
+              textTransform: 'uppercase',
+              textAlign: 'center',
+              verticalAlign: 'middle',
+            }}
+          >
+            Every word spoken. <br /> By top AI execs
+          </Typography>
 
           <SearchTags />
           <Feed />
@@ -62,8 +63,15 @@ function MainApp() {
 export default function App() {
   return (
     <Provider store={store}>
-      <MainApp />
-      <Footer/>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<MainApp />} />
+          <Route path="/content/:contentId" element={<ContentDetail />} />
+                  <Route path="/summary/:id" element={<SummaryPage />} />
+
+        </Routes>
+        <Footer />
+      </BrowserRouter>
     </Provider>
   );
 }
