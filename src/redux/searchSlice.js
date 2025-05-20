@@ -1,26 +1,32 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const searchSlice = createSlice({
-  name: 'search',
-  initialState: {
-    allTabs: ['All', 'Sam Altman', 'Infrastructure', 'Compute' ,'Sam Altman','Sam swss' , 'fes'],
-    selectedTab: 'All',
-  },
-  reducers: {
-    setSelectedTab: (state, action) => {
-      state.selectedTab = action.payload;
-    },
-    removeTab: (state, action) => {
-      const tabToRemove = action.payload;
-      state.allTabs = state.allTabs.filter(tab => tab !== tabToRemove);
+const initialState = {
+  allTabs: [],
+  selectedTabs: [],
+};
 
-      // If the removed tab was selected, select the first remaining or none
-      if (state.selectedTab === tabToRemove) {
-        state.selectedTab = state.allTabs[0] || '';
+const searchSlice = createSlice({
+  name: 'tabs',
+  initialState,
+  reducers: {
+    setAllTabs: (state, action) => {
+      state.allTabs = action.payload;
+    },
+    toggleSelectedTab: (state, action) => {
+      const tab = action.payload;
+      if (state.selectedTabs.includes(tab)) {
+        // Already selected, remove it (optional based on UI behavior)
+        state.selectedTabs = state.selectedTabs.filter((t) => t !== tab);
+      } else {
+        state.selectedTabs.push(tab);
       }
+    },
+    unselectTab: (state, action) => {
+      const tab = action.payload;
+      state.selectedTabs = state.selectedTabs.filter((t) => t !== tab);
     },
   },
 });
 
-export const { setSelectedTab, removeTab } = searchSlice.actions;
+export const { setAllTabs, toggleSelectedTab, unselectTab } = searchSlice.actions;
 export default searchSlice.reducer;

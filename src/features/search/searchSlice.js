@@ -1,20 +1,32 @@
-// src/redux/searchSlice.ts
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  allTabs: ['Tab 1', 'Tab 2', 'Tab 3'],
-  selectedTab: 'Tab 1',
+  allTabs: [],
+  selectedTabs: [],
 };
 
 const searchSlice = createSlice({
   name: 'tabs',
   initialState,
   reducers: {
-    setSelectedTab(state, action) {
-      state.selectedTab = action.payload;
+    setAllTabs: (state, action) => {
+      state.allTabs = action.payload;
+    },
+    toggleSelectedTab: (state, action) => {
+      const tab = action.payload;
+      if (state.selectedTabs.includes(tab)) {
+        // Already selected, remove it (optional based on UI behavior)
+        state.selectedTabs = state.selectedTabs.filter((t) => t !== tab);
+      } else {
+        state.selectedTabs.push(tab);
+      }
+    },
+    unselectTab: (state, action) => {
+      const tab = action.payload;
+      state.selectedTabs = state.selectedTabs.filter((t) => t !== tab);
     },
   },
 });
 
-export const { setSelectedTab } = searchSlice.actions;
+export const { setAllTabs, toggleSelectedTab, unselectTab } = searchSlice.actions;
 export default searchSlice.reducer;

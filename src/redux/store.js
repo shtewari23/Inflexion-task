@@ -1,10 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import tabReducer from './searchSlice'; // ✅ Correct path
+import searchReducer from './searchSlice';
 
-const store = configureStore({
+export const store = configureStore({
   reducer: {
-    tabs: tabReducer,
+    tabs: searchReducer,
   },
 });
-
-export default store;

@@ -3,8 +3,9 @@ import { Provider, useDispatch } from 'react-redux';
 import Header from './components/Header';
 import SearchTags from './components/SearchFilters';
 import Feed from './components/PodcastFeed';
-import store from './redux/store';
+import { store } from './redux/store';
 import { Container, Box, Typography } from '@mui/material';
+import Footer from './components/Footer';
 
 function MainApp() {
   const dispatch = useDispatch();
@@ -62,6 +63,7 @@ export default function App() {
   return (
     <Provider store={store}>
       <MainApp />
+      <Footer/>
     </Provider>
   );
 }

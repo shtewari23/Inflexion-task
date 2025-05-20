@@ -5,3 +5,44 @@ body {
   border:1px solid #393939;
   border-radius: 20px;
 }
+.MuiBox-root css-1llr0pp{
+  font-weight: 500 !important;
+}
+
+.css-1llr0pp{
+    font-weight: 500 !important;
+
+}
+
+.css-1c9o1xw{
+      background: linear-gradient(180deg, rgba(254, 254, 254, 0) 0%, #FFFFFF 100%) !important;
+ background: linear-gradient(90deg, #facc15 0%, #fcd34d 100%) !important;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+
+}
+
+
+
+.MuiBox-root.css-yqq8to {
+  background: linear-gradient(90deg, #facc15 0%, #fcd34d 100%) !important;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+.css-yqq8to{
+        background: linear-gradient(180deg, rgba(254, 254, 254, 0) 0%, #FFFFFF 100%) !important;
+ background: linear-gradient(90deg, #facc15 0%, #fcd34d 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  text-emphasis-color: transparent !important;
+}
+.MuiBox-root css-1c9o1xw{
+          background: linear-gradient(180deg, rgba(254, 254, 254, 0) 0%, #FFFFFF 100%) !important;
+
+}
