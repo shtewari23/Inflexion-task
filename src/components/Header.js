@@ -10,7 +10,6 @@
   import { styled } from "@mui/material/styles";
   import SearchIcon from "@mui/icons-material/Search";
   import { ReactComponent as InflexionLogo } from "../assets/Inflexion-logo.svg";
-  import { borderRadius } from "@mui/system";
 
   import { useDispatch } from "react-redux";
   const StyledAppBar = styled(AppBar)(() => ({

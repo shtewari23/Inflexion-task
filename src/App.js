@@ -11,7 +11,6 @@ import { Container, Box, Typography } from '@mui/material';
 import Footer from './components/Footer';
 import SummaryPage from './components/SummaryPage';
 function MainApp() {
-  const [input, setInput] = useState("");
 
   return (
     <Box sx={{ width: '100%' }}>

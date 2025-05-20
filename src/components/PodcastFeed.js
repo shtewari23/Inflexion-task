@@ -15,12 +15,11 @@ import { Skeleton } from "@mui/material";
   import clipboardIcon from '../assets/icons/clipboard.svg'; // adjust path
   import micIcon from '../assets/icons/mic-icon.svg'; // adjust path
   import Suscribe from './Suscribe'
-    import { ReactComponent as InflexionLogo } from "../assets/Inflexion-logo.svg";
 
   const getAvatarUrl = (name) =>
     `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=0D8ABC&color=fff`;
 
-  const TalkCard = ({ talk }: { talk: any   }) => {
+  const TalkCard = ({ talk }) => {
     const [expanded, setExpanded] = useState(false);
 
     const { listItems } = useMemo(() => {
@@ -133,7 +132,6 @@ import { Skeleton } from "@mui/material";
     sx={{
       fontFamily: "Helvetica Now Display",
       fontWeight: 500,
-      fontSize: "18px",
             fontSize: {xs:'16px' ,sm:'18px'},
 
       lineHeight: "28px",

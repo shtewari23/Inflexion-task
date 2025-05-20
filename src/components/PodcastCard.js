@@ -9,10 +9,10 @@ import {
 } from "@mui/material";
 import clipboardIcon from '../assets/icons/clipboard.svg'
 import micIcon from '../assets/icons/mic-icon.svg'
-const getAvatarUrl = (name: string) =>
+const getAvatarUrl = (name) =>
   `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=0D8ABC&color=fff`;
 
-const TalkCard = ({ talk, index }: { talk: any, index: number }) => {
+const TalkCard = ({ talk, index }) => {
   const [expanded, setExpanded] = useState(false);
 
   const { listItems } = useMemo(() => {
@@ -28,16 +28,6 @@ const TalkCard = ({ talk, index }: { talk: any, index: number }) => {
   const showSeeMore = listItems.length > 3 && !expanded;
 
   // Common list item styles
-  const listItemStyle = {
-    fontFamily: "Helvetica Now Display",
-    fontWeight: 500,
-    fontSize: "20px",
-    lineHeight: "32px",
-    letterSpacing: "0.2px",
-    verticalAlign: "middle",
-    color: "#374151",
-    mb: 1,
-  };
 
   return (
    <Card
