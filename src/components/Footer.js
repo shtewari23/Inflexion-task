@@ -26,7 +26,7 @@ const Footer = () => {
         px: 4,
         py: isMobile ? 4 : 6,
         mt: 8,
-                m: isMobile ? 0 : 6,
+                m: isMobile ? 0 : 0,
 
       }}
     >

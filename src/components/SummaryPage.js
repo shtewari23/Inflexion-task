@@ -306,7 +306,7 @@ const peopleMentioned = talk.people_mentioned || extractPeopleMentioned(doc);
           borderRadius: "28px",
           width: "100%",
           minHeight: "100vh",
-          px: { xs: 1, sm: 2 },
+          px: { xs: 0, sm: 2 },
           mt: 4
         }}
       >
@@ -337,7 +337,7 @@ const peopleMentioned = talk.people_mentioned || extractPeopleMentioned(doc);
     margin: "0 auto",
     maxWidth: { xs: "100%", sm: "750px", md: "800px" },
     mt: { xs: 2, md: 0 },
-    px: { xs: 1, md: 0 },
+    px: { xs: 0, md: 0 },
   }}
 >
  <Box
@@ -409,11 +409,11 @@ const peopleMentioned = talk.people_mentioned || extractPeopleMentioned(doc);
               variant="body1"
               mt={2}
               mb={3}
-              pl={{ xs: 1, md: 2 }}
+              pl={{ xs: 0, md: 2 }}
               sx={{
                 fontFamily: "Helvetica Now Display",
                 fontWeight: 500,
-                fontSize: { xs: "16px", md: "18px" },
+                fontSize: { xs: "14px", md: "18px" },
                 lineHeight: { xs: "24px", md: "30px" },
                 letterSpacing: "0.2px",
                 verticalAlign: "middle",
@@ -903,7 +903,6 @@ const peopleMentioned = talk.people_mentioned || extractPeopleMentioned(doc);
                     lineHeight: "30px",
                     letterSpacing: "0.5px",
                     verticalAlign: "middle",
-                    textTransform: "uppercase",
                     color:"#667085",
                     mb:3
                     }}
