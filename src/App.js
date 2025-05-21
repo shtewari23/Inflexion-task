@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
@@ -14,7 +13,6 @@ function MainApp() {
 
   return (
     <Box sx={{ width: '100%' }}>
-      <Header />
       <Container
         maxWidth={false}
         disableGutters
@@ -63,7 +61,10 @@ export default function App() {
   return (
     <Provider store={store}>
       <BrowserRouter>
+                      <Header />
+
         <Routes>
+
           <Route path="/" element={<MainApp />} />
           <Route path="/content/:contentId" element={<ContentDetail />} />
                   <Route path="/summary/:id" element={<SummaryPage />} />

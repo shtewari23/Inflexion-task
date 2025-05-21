@@ -11,7 +11,6 @@
   import SearchIcon from "@mui/icons-material/Search";
   import { ReactComponent as InflexionLogo } from "../assets/Inflexion-logo.svg";
 
-  import { useDispatch } from "react-redux";
   const StyledAppBar = styled(AppBar)(() => ({
     height: "96px",
     backgroundColor: "transparent",
@@ -154,7 +153,6 @@
 
 
   export default function Header() {
-    const dispatch = useDispatch();
 
     const [searchText, setSearchText] = useState("");
     const theme = useTheme();

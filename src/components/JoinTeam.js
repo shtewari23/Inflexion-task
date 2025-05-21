@@ -11,7 +11,7 @@ const InflexionSignup = () => {
         maxWidth: 700,
         bgcolor: "black",
         borderRadius: "28px",
-        p: { xs: "14px", sm: "30px" },
+        p: { xs: "14px", sm: "40px" },
         boxSizing: "border-box",
         display: "flex",
         flexDirection: "column",
@@ -25,21 +25,7 @@ const InflexionSignup = () => {
         alignItems={isMobile ? "flex-start" : "center"}
         gap="16px"
       >
-        <Box
-          component="img"
-          src={InflexionLogo }
-          alt="Inflexion Logo"
-          sx={{
-            width: 56,
-            height: 56,
-            borderRadius: "50%",
-            bgcolor: "#1E1E1E",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            padding: "10px",
-          }}
-        />
+       
         <Box
           display="flex"
           flexDirection="column"
@@ -50,36 +36,13 @@ const InflexionSignup = () => {
             sx={{
               fontFamily: `"Helvetica Now Display", Helvetica, sans-serif`,
               fontWeight: 800,
-              fontSize: "20px",
-              lineHeight: "28px",
+              fontSize: "28px",
+              lineHeight: "36px",
               color: "#FFFFFF",
-              textTransform: "uppercase",
             }}
           >
-            Join the “Inflexion” Point today.
-          </Typography>
-          <Typography
-            sx={{
-              fontFamily: `"Helvetica Now Display", Helvetica, sans-serif`,
-              fontWeight: 400,
-              fontSize: "16px",
-              lineHeight: "20px",
-              color: "#667085",
-              letterSpacing: "0.2px",
-            }}
-          >
-            
-            Inflexion Transcribe ·{" "}
-<img
-        src={micIcon}
-        alt="Mic icon"
-        style={{ width: 16, height: 16, marginRight: 4 }}
-      />            
-            <Box component="span" sx={{ fontWeight: 700 }}>
-              NEWSLETTER
-            </Box>{" "}
-            · WEEKLY
-          </Typography>
+Do you want to include this in your data room?          </Typography>
+          
         </Box>
       </Box>
 
@@ -92,10 +55,10 @@ const InflexionSignup = () => {
           lineHeight: "28px",
           color: "#FFFFFF",
     textAlign: { xs: "left",}, // left align on mobile, default on larger screens
-          mr: { xs: 0, sm: 12 }, // margin right 0 on mobile, 12 on larger screens
+          mr: { xs: 0, sm: 12 },
         }}
       >
-        Never miss a (spoken) word from the world’s leading AI execs.
+        Join the “Inflexion” point today.
       </Typography>
 
       {/* Email Input */}
@@ -126,7 +89,7 @@ const InflexionSignup = () => {
         sx={{
 width: {
   xs: "100%",  // mobile and up
-  md: "140px"  // medium screens and up override xs
+  md: "50%"  // medium screens and up override xs
 }, mb:2,
           height: 48,
           bgcolor: "#2A71FA",
@@ -140,7 +103,7 @@ width: {
           },
         }}
       >
-        Subscribe
+        Book a call with our team
       </Button>
     </Box>
   );

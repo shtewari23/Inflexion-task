@@ -46,3 +46,10 @@ body {
           background: linear-gradient(180deg, rgba(254, 254, 254, 0) 0%, #FFFFFF 100%) !important;
 
 }
+
+@font-face {
+  font-family: 'Helvetica Now Display';
+  src:url('../public/fonts/HelveticaNowDisplay-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}

@@ -11,7 +11,6 @@ import {
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import TalkCard from "./PodcastCard";
 import Suscribe from "./Suscribe";
-import Header from "./Header";
 
 const ContentDetail = () => {
   const { contentId } = useParams();
@@ -28,7 +27,7 @@ const ContentDetail = () => {
         setLoading(true);
 
         const { data } = await axios.get(
-          `http://54.237.104.114:8100/api/contents/${contentId}`
+          `${process.env.REACT_APP_API_BASE_URL}/api/contents/${contentId}`
         );
 
         if (data.status === "success") {
@@ -48,7 +47,7 @@ const ContentDetail = () => {
           setTalk(mainTalk);
 
           const talksResponse = await axios.get(
-            `http://54.237.104.114:8100/api/contents?limit=10&offset=0&search_term=${encodeURIComponent(
+            `${process.env.REACT_APP_API_BASE_URL}/api/contents?limit=10&offset=0&search_term=${encodeURIComponent(
               content.executive_name
             )}`
           );
@@ -82,7 +81,6 @@ const ContentDetail = () => {
 
   return (
     <>
-      <Header />
 
       <Box
         sx={{

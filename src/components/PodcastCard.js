@@ -9,12 +9,12 @@ import {
 } from "@mui/material";
 import clipboardIcon from '../assets/icons/clipboard.svg'
 import micIcon from '../assets/icons/mic-icon.svg'
+  import { Link } from "react-router-dom";
 const getAvatarUrl = (name) =>
   `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=0D8ABC&color=fff`;
 
 const TalkCard = ({ talk, index }) => {
   const [expanded, setExpanded] = useState(false);
-
   const { listItems } = useMemo(() => {
     const parser = new DOMParser();
     const doc = parser.parseFromString(talk.investor_note || "", "text/html");
@@ -251,6 +251,8 @@ const TalkCard = ({ talk, index }) => {
                  )}
        
                  {/* Full Summary CTA */}
+                               <Link to={`/summary/${talk.id}`} style={{ textDecoration: "none" , color:'#0A0A0A'}}>
+                 
                  <Box
                    mt={4}
                    display="flex"
@@ -286,6 +288,7 @@ const TalkCard = ({ talk, index }) => {
        
        
                  </Box>
+                 </Link>
       </CardContent>
     </Card>
   );

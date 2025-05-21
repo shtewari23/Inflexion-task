@@ -1,6 +1,7 @@
   import React, { useState, useEffect, useMemo } from "react";
   import { Link } from "react-router-dom";
-import { Skeleton } from "@mui/material";
+import { Skeleton , Stack } from "@mui/material";
+import SearchOffOutlinedIcon from "@mui/icons-material/SearchOffOutlined";
 
   import {
     Box,
@@ -160,8 +161,8 @@ import { Skeleton } from "@mui/material";
       textAlign: "left",
       fontFamily: "Helvetica Now Display",
       fontWeight: 500,
-      fontSize: "18px",
-      lineHeight: "30px",
+            fontSize: {xs:'16px' ,sm:'18px'},
+      lineHeight: {xs:'26px' , sm:'30px'},
       letterSpacing: "0.2px",
       verticalAlign: "middle",
     }}
@@ -178,7 +179,7 @@ import { Skeleton } from "@mui/material";
           sx={{
             fontFamily: "Helvetica Now Display",
             fontWeight: 500,
-            fontSize: "18px",
+            fontSize: {xs:'16px' ,sm:'18px'},
             lineHeight: "30px",
             letterSpacing: "0.2px",
             verticalAlign: "middle",
@@ -194,7 +195,7 @@ import { Skeleton } from "@mui/material";
               overflow: "hidden",
               textOverflow: "ellipsis",
               verticalAlign: "middle",
-              fontSize: "18px",
+            fontSize: {xs:'16px' ,sm:'18px'},
 
               // Gradient text only on third item
             background: isThird
@@ -235,7 +236,7 @@ import { Skeleton } from "@mui/material";
                   key={index}
                   sx={{
                     fontWeight:500,
-                    fontSize: "18px",
+            fontSize: {xs:'16px' ,sm:'18px'},
                     color: "#1B1E23",
                                       background: index === 2 ?'linear-gradient(180deg, rgba(254, 254, 254, 0) 0%, #FFFFFF 100%)':'1B1E23',
 
@@ -290,11 +291,12 @@ import { Skeleton } from "@mui/material";
           >
       <Typography
     fontWeight={700}
-    fontSize="18px"
     sx={{
       display: "flex",
-      alignItems: "center",
-      fontFamily: "Helvetica Now Display"
+      alignItems: "center", 
+      fontFamily: "Helvetica Now Display",
+                  fontSize: {xs:'16px' ,sm:'18px'},
+
     }}
   >
 
@@ -324,12 +326,12 @@ import { Skeleton } from "@mui/material";
       const fetchTalks = async () => {
         try {
           setLoading(true);
-          const baseUrl = "http://54.237.104.114:8100/api/contents?limit=10&offset=0";
+          const baseUrl = `${process.env.REACT_APP_API_BASE_URL}/api/contents?limit=10&offset=0`;
           const searchTerm = selectedTabs.length
             ? `&search_term=${encodeURIComponent(selectedTabs.join(" "))}`
             : "";
           const { data } = await axios.get(baseUrl + searchTerm);
-
+           
           if (data.status === "success") {
             const mapped = data.data.map((item) => ({
   id: item._id,
@@ -343,6 +345,32 @@ import { Skeleton } from "@mui/material";
 }));
 
             setTalks(mapped);
+            console.log(talks,"32")
+          }
+
+          if(talks == []){
+            console.log(talks,"22")
+             {!loading && talks.length === 0 && (
+  <Stack
+    direction="row"
+    spacing={1}
+    alignItems="center"
+    justifyContent="center"
+    sx={{
+      mt: 4,
+      px: 2,
+      py: 1.5,
+      borderRadius: 2,
+      backgroundColor: "background.paper",
+      boxShadow: 1,
+    }}
+  >
+    <SearchOffOutlinedIcon color="disabled" />
+    <Typography color="text.secondary">
+      No talks found. Try changing the filters.
+    </Typography>
+  </Stack>
+)}
           }
         } catch (e) {
           console.error("Failed to fetch talks", e);
@@ -353,6 +381,7 @@ import { Skeleton } from "@mui/material";
 
       fetchTalks();
     }, [selectedTabs]);
+   
 
 if (loading) {
   return (
@@ -419,6 +448,7 @@ if (loading) {
       ))}
     </Box>
   );
+  
 }
 
     return (
