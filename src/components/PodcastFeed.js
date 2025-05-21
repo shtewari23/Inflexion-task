@@ -326,7 +326,7 @@ import SearchOffOutlinedIcon from "@mui/icons-material/SearchOffOutlined";
       const fetchTalks = async () => {
         try {
           setLoading(true);
-          const baseUrl = `${process.env.REACT_APP_API_BASE_URL}/api/contents?limit=10&offset=0`;
+          const baseUrl = `${process.env.REACT_APP_API_BASE_URL}/api/contents?limit=30&offset=0`;
           const searchTerm = selectedTabs.length
             ? `&search_term=${encodeURIComponent(selectedTabs.join(" "))}`
             : "";

@@ -344,7 +344,7 @@ const peopleMentioned = talk.people_mentioned || extractPeopleMentioned(doc);
   sx={{
     display: "flex",
     alignItems: "flex-start", // Align avatar with first line of text
-    pl: { xs: 1, md: 0 },
+    pl: { xs: 0, md: 0 },
     gap: 2,
   }}
 >

@@ -1,4 +1,4 @@
-  import React, { useState } from "react";
+  import React, { useState,useEffect } from "react";
   import {
     AppBar,
     Toolbar,
@@ -10,6 +10,9 @@
   import { styled } from "@mui/material/styles";
   import SearchIcon from "@mui/icons-material/Search";
   import { ReactComponent as InflexionLogo } from "../assets/Inflexion-logo.svg";
+import { useDispatch } from "react-redux";
+import { setAllTabs } from "../redux/searchSlice";
+import { fetchCompanies, fetchExecutives } from "../api/searchApi";
 
   const StyledAppBar = styled(AppBar)(() => ({
     height: "96px",
@@ -55,6 +58,7 @@
 
     },
   }));
+
 
     const SearchContainer = styled(Box)(({ theme }) => ({
       position: "relative",
@@ -153,13 +157,48 @@
 
 
   export default function Header() {
+const dispatch = useDispatch();
+
+
+
+
 
     const [searchText, setSearchText] = useState("");
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
    
+useEffect(() => {
+  const delayDebounce = setTimeout(() => {
+    if (searchText.trim() !== "") {
+      handleSearch(searchText);
+    }
+  }, 400);
 
+  return () => clearTimeout(delayDebounce);
+}, [searchText]);
+// Handle search
+const handleSearch = async (query) => {
+  try {
+    const [executivesRes, companiesRes] = await Promise.all([
+      fetchExecutives(),
+      fetchCompanies(),
+    ]);
+
+    // Combine and filter results
+    const combined = [...new Set([...(executivesRes || []), ...(companiesRes || [])])];
+    const filtered = combined.filter((item) =>
+      item.toLowerCase().includes(query.toLowerCase())
+    );
+
+    // Update Redux store with filtered results
+    dispatch(setAllTabs(filtered));
+  } catch (error) {
+    console.error("Search error:", error);
+  }
+};
     return (
+
+
       <StyledAppBar position="static">
         <StyledToolbar>
           <LogoBox>
@@ -179,7 +218,11 @@
                 isMobile ? "" : "Search companies, executives..."
               }
               value={searchText}
-              onChange={(e) => setSearchText(e.target.value)}
+onChange={(e) => {
+  const value = e.target.value;
+  setSearchText(value);
+  handleSearch(value);
+}}
             />
           </SearchContainer>
 

@@ -1,7 +1,7 @@
 import { Box, Typography, TextField, Button, useMediaQuery } from "@mui/material";
 import InflexionLogo from "../assets/Inflexion-logo.svg";
 import micIcon from '../assets/icons/mic-icon.svg'
-const InflexionSignup = () => {
+const InflexionJoin= () => {
   const isMobile = useMediaQuery("(max-width:600px)");
 
   return (
@@ -109,4 +109,4 @@ width: {
   );
 };
 
-export default InflexionSignup;
+export default InflexionJoin;
