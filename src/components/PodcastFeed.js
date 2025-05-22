@@ -350,65 +350,47 @@ minHeight: expanded ? '100%' : '345px',
     const selectedTabs = useSelector((state) => state.tabs.selectedTabs);
         const [loading, setLoading] = useState(false);
 
+useEffect(() => {
+  const fetchTalks = async () => {
+    try {
+      setLoading(true);
 
-        useEffect(() => {
-          const fetchTalks = async () => {
-            try {
-              setLoading(true);
               const baseUrl = `${process.env.REACT_APP_API_BASE_URL}/contents?limit=0&offset=0`;
-              const searchTerm = selectedTabs.length
-                ? `&search_term=${encodeURIComponent(selectedTabs.join(" "))}`
-                : "";
-              const { data } = await axios.get(baseUrl + searchTerm);
-              console.log(searchTerm)
-              if (data.status === "success") {
-                const mapped = data.data.map((item) => ({
-      id: item._id,
-      title: item.title,
-      description: item.description,
-      investor_note: item.investor_note,
-      executive_name: item.executive_name, // Placeholder
-      company_name: item.company_name, // Placeholder
-      published_date: item.published_date.split("T")[0], // Extracted date
-      thumnailUrl: item.thumbnail_url
-    }));
+      // 👇 Updated searchTerm logic
+      let searchTerm = "";
+      if (selectedTabs.length === 1) {
+        searchTerm = `&search_term=${encodeURIComponent(selectedTabs[0])}`;
+      } else if (selectedTabs.length > 1) {
+        searchTerm = `&search_term=${encodeURIComponent(selectedTabs.join(" "))}`;
+      }
 
-                setTalks(mapped);
-                console.log(talks,"32")
-              }
+      const { data } = await axios.get(baseUrl + searchTerm);
 
-              if(talks == []){
-                console.log(talks,"22")
-                {!loading && talks.length === 0 && (
-      <Stack
-        direction="row"
-        spacing={1}
-        alignItems="center"
-        justifyContent="center"
-        sx={{
-          px: 2,
-          py: 1.5,
-          borderRadius: 2,
-          backgroundColor: "background.paper",
-          boxShadow: 1,
-        }}
-      >
-        <SearchOffOutlinedIcon color="disabled" />
-        <Typography color="text.secondary">
-          No talks found. Try changing the filters.
-        </Typography>
-      </Stack>
-    )}
-              }
-            } catch (e) {
-              console.error("Failed to fetch talks", e);
-            } finally {
-              setLoading(false);
-            }
-          };
+      if (data.status === "success") {
+        const mapped = data.data.map((item) => ({
+          id: item._id,
+          title: item.title,
+          description: item.description,
+          investor_note: item.investor_note,
+          executive_name: item.executive_name,
+          company_name: item.company_name,
+          published_date: item.published_date.split("T")[0],
+          thumnailUrl: item.thumbnail_url,
+        }));
 
-          fetchTalks();
-        }, [selectedTabs]);
+        setTalks(mapped);
+      }
+
+    } catch (e) {
+      console.error("Failed to fetch talks", e);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchTalks();
+}, [selectedTabs]);
+
       
 
     if (loading) {
@@ -486,7 +468,7 @@ minHeight: expanded ? '100%' : '345px',
     {talks
       .filter((talk) => {
         if (selectedTabs.length === 0) return true;
-        return selectedTabs.includes(talk.executive_name);
+return selectedTabs.includes(talk.executive_name) || selectedTabs.includes(talk.company_name);
       })
       .length === 0 ? (
         // No data found UI
