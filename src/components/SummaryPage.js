@@ -48,7 +48,7 @@ const items = [
   };
 
   const renderList = () => (
-<List sx={{ mt: { sm: 15, xs: 8 },
+<List sx={{ mt: { sm: 15, xs: 8 }, 
 
  }}>
       {items.map((text) => {
@@ -119,6 +119,7 @@ const items = [
         mr: 4,
         justifyContent: "center",
         alignItems: "center",
+        ml:"73px",
       }}
     >
       {renderList()}
@@ -128,16 +129,20 @@ const items = [
 
 
     const SummaryPage = () => {
+        const [imageError, setImageError] = useState(false);
+      
           const navigate = useNavigate();
 
     const { id } = useParams();
     const [talk, setTalk] = useState(null);
     const [loading, setLoading] = useState(true);
+    const encodedName = encodeURIComponent(talk?.executive_name); // handles space
 
+  const imagePath = `/images/executives/${encodedName}.jpg`;
     useEffect(() => {
         const fetchSummary = async () => {
         try {
-            const { data } = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/contents/${id}`);
+            const { data } = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/contents/${id}`);
             if (data.status === "success") {
             setTalk(data.data);
             }
@@ -299,7 +304,7 @@ const peopleMentioned = talk.people_mentioned || extractPeopleMentioned(doc);
     return  (
     <Box sx={{ width: "100%" }}>
       <Container
-        maxWidth={false}
+        maxWidth={"100%"}
         disableGutters
         sx={{
           backgroundColor: "white",
@@ -321,6 +326,7 @@ const peopleMentioned = talk.people_mentioned || extractPeopleMentioned(doc);
               borderRadius: "50%",
               border: "1px solid #ccc",
               color: "black",
+              ml:'47px'
             }}
           >
             <ArrowBackIcon />
@@ -348,13 +354,21 @@ const peopleMentioned = talk.people_mentioned || extractPeopleMentioned(doc);
     gap: 2,
   }}
 >
-  {/* Avatar */}
-  <Avatar
-    alt="Speaker"
-    src={talk.avatar || "/default-avatar.jpg"}
-    sx={{ width: 56, height: 56, mt: "4px" }} // adjust mt to better center
-  />
-
+  {!imageError ? (
+         <Avatar
+           alt={talk?.executive_name}
+           src={imagePath}
+           onError={() => setImageError(true)}
+           sx={{ width: 48, height: 48 }}
+         />
+       ) : (
+         <Avatar sx={{ width: 48, height: 48 }}>
+           {talk?.executive_name
+             .split(" ")
+             .map((n) => n[0])
+             .join("")}
+         </Avatar>
+       )}
   {/* Title */}
   <Typography
     gutterBottom
@@ -401,7 +415,8 @@ const peopleMentioned = talk.people_mentioned || extractPeopleMentioned(doc);
                   />
                   PODCAST
                 </span>
-                &nbsp;•&nbsp; {talk.published_date}
+                &nbsp;•&nbsp; {talk.published_date.split("T")[0]},
+
               </Typography>
             </Box>
 

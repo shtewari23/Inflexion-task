@@ -27,7 +27,7 @@ const ContentDetail = () => {
         setLoading(true);
 
         const { data } = await axios.get(
-          `${process.env.REACT_APP_API_BASE_URL}/api/contents/${contentId}`
+          `${process.env.REACT_APP_API_BASE_URL}/contents/${contentId}`
         );
 
         if (data.status === "success") {
@@ -47,7 +47,7 @@ const ContentDetail = () => {
           setTalk(mainTalk);
 
           const talksResponse = await axios.get(
-            `${process.env.REACT_APP_API_BASE_URL}/api/contents?limit=10&offset=0&search_term=${encodeURIComponent(
+            `${process.env.REACT_APP_API_BASE_URL}/contents?limit=0&offset=0&search_term=${encodeURIComponent(
               content.executive_name
             )}`
           );

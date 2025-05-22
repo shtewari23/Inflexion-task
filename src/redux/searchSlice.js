@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  allTabs: [],
-  selectedTabs: [],
+  allTabs: [],       // e.g. ["John Doe", "Jane Smith"]
+  selectedTabs: [],  // selected full names as strings
 };
 
 const searchSlice = createSlice({
@@ -15,7 +15,6 @@ const searchSlice = createSlice({
     toggleSelectedTab: (state, action) => {
       const tab = action.payload;
       if (state.selectedTabs.includes(tab)) {
-        // Already selected, remove it (optional based on UI behavior)
         state.selectedTabs = state.selectedTabs.filter((t) => t !== tab);
       } else {
         state.selectedTabs.push(tab);

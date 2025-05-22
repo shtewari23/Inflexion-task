@@ -14,42 +14,44 @@ function MainApp() {
   return (
     <Box sx={{ width: '100%' }}>
       <Container
-        maxWidth={false}
+        maxWidth={'100%'}
         disableGutters
         sx={{
           backgroundColor: 'white',
           borderRadius: '28px',
           width: '100%',
           minHeight: '100vh',
-          px: 2,
+              px: 2,
         }}
       >
         <Box
           sx={{
             display: 'flex',
             flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-            textAlign: 'center',
             py: 6,
           }}
         >
           <Typography
+            variant="h1"
+
             sx={{
               fontFamily: 'Helvetica Now Display, sans-serif',
               fontWeight: 950,
-              fontSize: { xs: '32px', sm: '56px' },
+                fontSize: { xs: '32px', sm: '68px' },
               lineHeight: { xs: '44px', sm: '64px' },
-              letterSpacing: '0.1px',
+              letterSpacing: '0.5px',
               textTransform: 'uppercase',
               textAlign: 'center',
               verticalAlign: 'middle',
+              width:'100%',
+              mb:2
             }}
           >
             Every word spoken. <br /> By top AI execs
           </Typography>
-
           <SearchTags />
+          <Box sx={{mt:3}}>
+            </Box>
           <Feed />
         </Box>
       </Container>
@@ -61,6 +63,7 @@ export default function App() {
   return (
     <Provider store={store}>
       <BrowserRouter>
+      <Box sx={{width:'100%' ,ml:0}}>
                       <Header />
 
         <Routes>
@@ -71,6 +74,7 @@ export default function App() {
 
         </Routes>
         <Footer />
+        </Box>
       </BrowserRouter>
     </Provider>
   );

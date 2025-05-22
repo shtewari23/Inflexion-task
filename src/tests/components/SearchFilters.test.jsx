@@ -3,14 +3,14 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import TabsHeader from './TabsHeader';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
-import * as searchApi from '../api/searchApi';
+import * as searchApi from '../searchApi';
 import thunk from 'redux-thunk';
 import '@testing-library/jest-dom';
 
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
 
-jest.mock('../api/searchApi', () => ({
+jest.mock('../searchApi', () => ({
   fetchExecutives: jest.fn(),
   fetchCompanies: jest.fn(),
 }));

@@ -8,7 +8,7 @@ const InflexionSignup = () => {
     <Box
       sx={{
         width: "100%",
-        maxWidth: 700,
+        maxWidth: 750,
         bgcolor: "black",
         borderRadius: "28px",
         p: { xs: "14px", sm: "30px" },
